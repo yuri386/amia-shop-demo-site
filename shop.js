@@ -36,10 +36,10 @@ const looks = [
     description: "Свитшот с круглым вырезом и небольшим рисунком спереди.",
     price: 7900, sizes: [110, 150], post: "DgG_trbDIzs",
     colors: [
-      { name: "Чёрный", swatch: "#222226", image: "sweatshirt" },
-      { name: "Бордовый", swatch: "#71364b", image: "sweatshirt" },
-      { name: "Хаки", swatch: "#827754", image: "sweatshirt" },
-      { name: "Светло-серый", swatch: "#c9c8c1", image: "sweatshirt" }
+      { name: "Чёрный", swatch: "#222226", image: "sweatshirt-black" },
+      { name: "Бордовый", swatch: "#71364b", image: "sweatshirt-burgundy" },
+      { name: "Хаки", swatch: "#827754", image: "sweatshirt-khaki" },
+      { name: "Светло-серый", swatch: "#c9c8c1", image: "sweatshirt-light" }
     ]
   },
   {
@@ -64,7 +64,7 @@ const looks = [
     id: "winter-boots", type: "shoes", name: "Зимние ботинки",
     description: "Серые зимние ботинки на шнуровке со светлой подкладкой.",
     price: 14990, sizes: [27, 32], post: "DgHBqQFDD9T",
-    colors: [{ name: "Серый", swatch: "#65676b", image: "winter-boots" }]
+    colors: [{ name: "Серый", swatch: "#65676b", image: "winter-boots", width: 706 }]
   }
 ];
 
@@ -109,8 +109,8 @@ function updateSavedControl() {
   savedToggle.setAttribute("aria-pressed", String(activeFilter === "saved"));
 }
 
-function photoUrl(color) {
-  return "assets/" + color.image + ".webp";
+function photoUrl(color, suffix = "") {
+  return "assets/" + color.image + suffix + ".webp?v=5";
 }
 
 function createSwatch(color) {
@@ -195,8 +195,11 @@ function createCard(look) {
   const frame = document.createElement("span");
   frame.className = "product-frame";
   const photo = document.createElement("img");
+  const primaryColor = look.colors[0];
   photo.className = "product-photo";
-  photo.src = photoUrl(look.colors[0]);
+  photo.src = photoUrl(primaryColor, "-card");
+  photo.srcset = photo.src + " 480w, " + photoUrl(primaryColor) + " " + (primaryColor.width ?? 900) + "w";
+  photo.sizes = "(max-width: 640px) 47vw, (max-width: 790px) 45vw, (max-width: 1080px) 31vw, 300px";
   photo.alt = "";
   photo.loading = "lazy";
   photo.width = 510;
