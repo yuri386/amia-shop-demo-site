@@ -1,33 +1,70 @@
 const looks = [
   {
-    id: "blazer", type: "top", name: "Жакет свободного кроя",
-    description: "Прямой силуэт и выраженная линия плеч.",
-    sizes: ["XS", "S", "M", "L"], color: "Тёмный графит", swatch: "#343333"
+    id: "lassie", type: "outerwear", name: "Зимний комбинезон Lassie",
+    description: "Комплект с капюшоном. В публикации указана защита от ветра и влаги.",
+    price: 29900, sizes: [74, 98], post: "DgNrIq5jOeK",
+    colors: [
+      { name: "Розовый", swatch: "#c16e92", image: "lassie-pink" },
+      { name: "Сиреневый", swatch: "#a89bb8", image: "lassie-lilac" },
+      { name: "Молочный", swatch: "#e0ded0", image: "lassie-cream" }
+    ]
   },
   {
-    id: "cardigan", type: "top", name: "Молочный кардиган",
-    description: "Фактурный трикотаж и V-образный вырез.",
-    sizes: ["S", "M", "L"], color: "Молочный", swatch: "#daccb4"
+    id: "snowsuit", type: "outerwear", name: "Зимний комплект с капюшоном",
+    description: "Бежевая куртка с капюшоном и тёмные утеплённые брюки.",
+    price: 29900, sizes: [86, 110], post: "DgNrSfSDEpE",
+    colors: [{ name: "Бежевый / графит", swatch: "#a48c71", image: "snowsuit" }]
   },
   {
-    id: "trousers", type: "bottom", name: "Широкие брюки",
-    description: "Широкие брючины, стрелки и свободная посадка.",
-    sizes: ["XS", "S", "M", "L"], color: "Угольный", swatch: "#2a2928"
+    id: "puffer", type: "outerwear", name: "Стёганая куртка",
+    description: "Светло-серая куртка с молнией и капюшоном с меховой опушкой.",
+    price: 28900, sizes: [110, 150], post: "DgHBqQFDD9T",
+    colors: [{ name: "Светло-серый", swatch: "#cbc9c0", image: "puffer" }]
   },
   {
-    id: "dress", type: "dress", name: "Чёрное платье макси",
-    description: "Приталенный силуэт и длинный рукав.",
-    sizes: ["XS", "S", "M"], color: "Чёрный", swatch: "#151515"
+    id: "fleece-hoodie", type: "top", name: "Худи с начёсом",
+    description: "Худи с капюшоном и надписью спереди.",
+    price: 8990, sizes: [90, 130], post: "DgKgR13jDX1",
+    colors: [
+      { name: "Графитовый", swatch: "#494b4f", image: "hoodie-charcoal" },
+      { name: "Светло-серый", swatch: "#c9c7c1", image: "hoodie-light" },
+      { name: "Фиолетовый", swatch: "#3e2d50", image: "hoodie-purple" }
+    ]
   },
   {
-    id: "jeans", type: "bottom", name: "Графитовые джинсы",
-    description: "Свободный крой и выцветший графитовый деним.",
-    sizes: ["25", "26", "27", "28", "29", "30"], color: "Выцветший графит", swatch: "#565453"
+    id: "kids-sweatshirt", type: "top", name: "Детский свитшот",
+    description: "Свитшот с круглым вырезом и небольшим рисунком спереди.",
+    price: 7900, sizes: [110, 150], post: "DgG_trbDIzs",
+    colors: [
+      { name: "Чёрный", swatch: "#222226", image: "sweatshirt" },
+      { name: "Бордовый", swatch: "#71364b", image: "sweatshirt" },
+      { name: "Хаки", swatch: "#827754", image: "sweatshirt" },
+      { name: "Светло-серый", swatch: "#c9c8c1", image: "sweatshirt" }
+    ]
   },
   {
-    id: "bomber", type: "top", name: "Шоколадный бомбер",
-    description: "Объёмный крой, молния и эластичные манжеты.",
-    sizes: ["S", "M", "L", "XL"], color: "Шоколадный", swatch: "#614535"
+    id: "corduroy", type: "bottom", name: "Утеплённые вельветовые брюки",
+    description: "Брюки из вельвета со светлой утеплённой подкладкой.",
+    price: 11900, sizes: [110, 150], post: "DgE8aQ9DEZN",
+    colors: [
+      { name: "Бордовый", swatch: "#522734", image: "corduroy-burgundy" },
+      { name: "Светло-серый", swatch: "#c5c4bf", image: "corduroy-light" }
+    ]
+  },
+  {
+    id: "kids-denim", type: "bottom", name: "Детские джинсы",
+    description: "Джинсы свободного кроя с карманами.",
+    price: 9500, sizes: [90, 140], post: "DgHBqQFDD9T",
+    colors: [
+      { name: "Голубой", swatch: "#768d99", image: "kids-denim" },
+      { name: "Чёрный", swatch: "#23242a", image: "kids-denim" }
+    ]
+  },
+  {
+    id: "winter-boots", type: "shoes", name: "Зимние ботинки",
+    description: "Серые зимние ботинки на шнуровке со светлой подкладкой.",
+    price: 14990, sizes: [27, 32], post: "DgHBqQFDD9T",
+    colors: [{ name: "Серый", swatch: "#65676b", image: "winter-boots" }]
   }
 ];
 
@@ -42,11 +79,17 @@ const savedCount = document.querySelector("#saved-count");
 const dialog = document.querySelector("#look-dialog");
 const dialogImage = document.querySelector("#look-image");
 const dialogSave = document.querySelector("#look-save");
-const sizeOptions = document.querySelector("#look-sizes");
+const sizeInput = document.querySelector("#look-size-input");
+const sizeLabel = document.querySelector("#look-size-label");
+const sizeRange = document.querySelector("#look-size-range");
+const colorOptions = document.querySelector("#look-colors");
+const sourceLink = document.querySelector("#look-source");
 const orderForm = document.querySelector("#order-form");
 const whatsappUrl = document.querySelector("#contact-whatsapp").href;
 const heart = document.querySelector(".saved-toggle svg");
 const storageKey = "amia-demo-favorites";
+const tenge = new Intl.NumberFormat("ru-KZ", { style: "currency", currency: "KZT", maximumFractionDigits: 0 });
+const catalogTitle = heading.textContent;
 
 let saved = new Set();
 let activeFilter = "all";
@@ -66,8 +109,21 @@ function updateSavedControl() {
   savedToggle.setAttribute("aria-pressed", String(activeFilter === "saved"));
 }
 
-function photoUrl(look) {
-  return "assets/" + look.id + ".webp";
+function photoUrl(color) {
+  return "assets/" + color.image + ".webp";
+}
+
+function createSwatch(color) {
+  const swatch = document.createElement("span");
+  swatch.className = "swatch";
+  swatch.setAttribute("aria-hidden", "true");
+  swatch.style.setProperty("--swatch", color.swatch);
+  return swatch;
+}
+
+function showProductPhoto(look, color) {
+  dialogImage.src = photoUrl(color);
+  dialogImage.alt = look.name + ", " + color.name.toLowerCase();
 }
 
 function changeSaved(look) {
@@ -96,21 +152,30 @@ function updateDialogSave() {
 function openLook(look, trigger) {
   activeLook = look;
   dialogTrigger = trigger;
-  dialogImage.src = photoUrl(look);
-  dialogImage.alt = look.name;
+  showProductPhoto(look, look.colors[0]);
   document.querySelector("#look-title").textContent = look.name;
+  document.querySelector("#look-price").textContent = tenge.format(look.price);
   document.querySelector("#look-description").textContent = look.description;
-  document.querySelector("#look-color-name").textContent = look.color;
-  document.querySelector("#look-swatch").style.setProperty("--swatch", look.swatch);
-  sizeOptions.replaceChildren(...look.sizes.map(size => {
+  sourceLink.href = "https://www.instagram.com/amishop_krg/p/" + look.post + "/";
+
+  const [min, max] = look.sizes;
+  sizeInput.min = min;
+  sizeInput.max = max;
+  sizeInput.value = "";
+  sizeLabel.textContent = look.type === "shoes" ? "Размер обуви" : "Рост, см";
+  sizeRange.textContent = "В публикации: " + min + "–" + max;
+
+  colorOptions.replaceChildren(...look.colors.map((color, index) => {
     const label = document.createElement("label");
     const choice = document.createElement("input");
     choice.type = "radio";
-    choice.name = "size";
-    choice.value = size;
-    choice.required = true;
+    choice.name = "color";
+    choice.value = color.name;
+    choice.checked = index === 0;
+    choice.addEventListener("change", () => showProductPhoto(look, color));
     const text = document.createElement("span");
-    text.textContent = size;
+    text.className = "color-chip";
+    text.append(createSwatch(color), color.name);
     label.append(choice, text);
     return label;
   }));
@@ -131,28 +196,29 @@ function createCard(look) {
   frame.className = "product-frame";
   const photo = document.createElement("img");
   photo.className = "product-photo";
-  photo.src = photoUrl(look);
+  photo.src = photoUrl(look.colors[0]);
   photo.alt = "";
   photo.loading = "lazy";
-  photo.width = 508;
-  photo.height = 508;
+  photo.width = 510;
+  photo.height = 566;
   frame.append(photo);
   const details = document.createElement("span");
   details.className = "product-details";
   const title = document.createElement("span");
   title.className = "product-title";
   title.textContent = look.name;
+  const price = document.createElement("span");
+  price.className = "product-price";
+  price.textContent = tenge.format(look.price);
   const color = document.createElement("span");
   color.className = "product-color";
-  const swatch = document.createElement("span");
-  swatch.className = "swatch";
-  swatch.style.setProperty("--swatch", look.swatch);
-  color.append(swatch, look.color);
+  color.append(...look.colors.map(createSwatch));
+  if (look.colors.length === 1) color.append(look.colors[0].name);
   const more = document.createElement("span");
   more.className = "product-more";
   more.setAttribute("aria-hidden", "true");
   more.textContent = "+";
-  details.append(title, color, more);
+  details.append(title, price, color, more);
   open.append(frame, details);
   open.addEventListener("click", () => openLook(look, open));
 
@@ -179,7 +245,7 @@ function render() {
     if (activeFilter === "saved") return saved.has(look.id);
     return activeFilter === "all" || look.type === activeFilter;
   });
-  heading.textContent = activeFilter === "saved" ? "Избранное" : "Подборка образов";
+  heading.textContent = activeFilter === "saved" ? "Избранное" : catalogTitle;
   resultCount.textContent = "Показано " + filtered.length;
   filterButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.filter === activeFilter)));
   updateSavedControl();
@@ -187,7 +253,7 @@ function render() {
   if (filtered.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty";
-    empty.textContent = "Здесь появятся образы, которые вы сохраните.";
+    empty.textContent = "Здесь появятся товары, которые вы сохраните.";
     grid.append(empty);
   }
 }
@@ -216,11 +282,14 @@ dialog.addEventListener("close", () => {
 });
 orderForm.addEventListener("submit", event => {
   event.preventDefault();
-  const size = new FormData(orderForm).get("size");
+  const data = new FormData(orderForm);
+  const size = data.get("size");
+  const sizing = activeLook.type === "shoes" ? "Размер: " + size : "Рост: " + size + " см";
   const message = [
     "Здравствуйте! Хочу заказать товар «" + activeLook.name + "».",
-    "Размер: " + size + ". Цвет: " + activeLook.color + ".",
-    "Подскажите, пожалуйста, есть ли он в наличии и какая цена?"
+    sizing + ". Цвет: " + data.get("color") + ".",
+    "Подскажите, пожалуйста, есть ли он в наличии и какая цена?",
+    sourceLink.href
   ].join("\n");
   const orderUrl = new URL(whatsappUrl);
   orderUrl.searchParams.set("text", message);
