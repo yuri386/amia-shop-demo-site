@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="AMIA SHOP — концепт онлайн-витрины магазина одежды.">
+  <title>AMIA SHOP — одежда с характером</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="shop.js?v=2" defer></script>
+</head>
+<body>
+  <a class="skip" href="#catalog">Перейти к подборке</a>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="#" aria-label="AMIA SHOP, на главную">AMIA<span>SHOP</span></a>
+      <nav aria-label="Основное меню">
+        <a href="#catalog">Подборка</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <button class="saved-toggle" type="button" aria-pressed="false" aria-label="Избранное, 0 вещей">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.8 5.8a4.7 4.7 0 0 0-6.7 0L12 7.9 9.9 5.8a4.7 4.7 0 1 0-6.7 6.7L12 21l8.8-8.5a4.7 4.7 0 0 0 0-6.7Z"/></svg>
+        <span class="saved-label">Избранное</span><span id="saved-count">0</span>
+      </button>
+    </div>
+  </header>
+  <main>
+    <section class="shell hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Одежда с<br><em>характером.</em></h1>
+        <p class="hero-intro">Выразительные силуэты, спокойные оттенки и вещи, которые легко сочетать.</p>
+        <a class="button primary" href="#catalog">Смотреть подборку</a>
+      </div>
+      <figure class="hero-frame">
+        <img src="assets/hero.webp" width="1536" height="1024" alt="Модель в тёмном жакете на фоне студийного света" fetchpriority="high">
+      </figure>
+    </section>
+
+    <section class="shell catalog" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="catalog-title" tabindex="-1">Подборка образов</h2>
+          <p>Фото и варианты указаны для демонстрации.</p>
+        </div>
+        <p class="result-count" id="result-count" role="status"></p>
+      </div>
+      <div class="filters" role="group" aria-label="Категории">
+        <button data-filter="all" aria-pressed="true" type="button">Все образы</button>
+        <button data-filter="top" aria-pressed="false" type="button">Верх</button>
+        <button data-filter="bottom" aria-pressed="false" type="button">Низ</button>
+        <button data-filter="dress" aria-pressed="false" type="button">Платья</button>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+      <noscript><p>Откройте <a href="https://www.instagram.com/amishop_krg/">Instagram AMIA SHOP</a>, чтобы посмотреть предложения магазина.</p></noscript>
+    </section>
+
+    <section class="shell contact" id="contact" aria-labelledby="contact-title">
+      <div>
+        <h2 id="contact-title">Связаться с AMIA</h2>
+      </div>
+      <div class="contact-actions">
+        <a class="button primary" id="contact-whatsapp" href="https://wa.me/77071608666" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="button secondary" href="https://www.instagram.com/amishop_krg/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <a class="wordmark" href="#" aria-label="AMIA SHOP, на главную">AMIA<span>SHOP</span></a>
+    <p>Неофициальная демо-витрина</p>
+  </footer>
+
+  <dialog id="look-dialog" aria-labelledby="look-title">
+    <button class="close" type="button" aria-label="Закрыть">×</button>
+    <div class="look-grid">
+      <img id="look-image" alt="">
+      <div class="look-copy">
+        <p class="eyebrow">Пример образа</p>
+        <h2 id="look-title"></h2>
+        <p id="look-description"></p>
+        <form class="order-form" id="order-form">
+          <fieldset class="size-picker">
+            <legend>Размер</legend>
+            <div class="size-options" id="look-sizes"></div>
+          </fieldset>
+          <dl class="look-color">
+            <dt>Цвет</dt>
+            <dd><span class="swatch" id="look-swatch" aria-hidden="true"></span><span id="look-color-name"></span></dd>
+          </dl>
+          <div class="look-actions">
+            <button class="button primary" type="submit">Заказать в WhatsApp</button>
+            <button class="button secondary" id="look-save" type="button" aria-pressed="false"></button>
+          </div>
+          <p class="look-note">Варианты для демонстрации. Наличие и цену уточняйте у магазина.</p>
+        </form>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>
