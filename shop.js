@@ -286,11 +286,10 @@ orderForm.addEventListener("submit", event => {
   const size = data.get("size");
   const sizing = activeLook.type === "shoes" ? "Размер: " + size : "Рост: " + size + " см";
   const message = [
-    "Здравствуйте! Хочу заказать товар «" + activeLook.name + "».",
+    "Здравствуйте! Хочу заказать «" + activeLook.name + "».",
     sizing + ". Цвет: " + data.get("color") + ".",
-    "Подскажите, пожалуйста, есть ли он в наличии и какая цена?",
-    sourceLink.href
-  ].join("\n");
+    "Подскажите, пожалуйста, есть ли товар в наличии и сколько он стоит?"
+  ].join(" ");
   const orderUrl = new URL(whatsappUrl);
   orderUrl.searchParams.set("text", message);
   window.open(orderUrl.href, "_blank", "noopener");
